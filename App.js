@@ -1,56 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import { Keyboard, StyleSheet, TouchableWithoutFeedback, TouchableOpacity, Text, TextInput, View } from 'react-native';
-import { useState, useEffect } from 'react';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { HomeScreen } from './components/HomeScreen';
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
-export default function App() {
-  const [todaysCalorie, setTodaysCalorie] = useState(0)
-  const [calorie, setCalorie] = useState(100)
+export default function App(navigation) {
+  const Stack = createNativeStackNavigator()
 
-  const addCalorie = () => {
-    setTodaysCalorie(prev => prev + parseInt(calorie))
-    setCalorie(0)
-
-  }
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss() }>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+          />
+        </Stack.Navigator>
 
-      <View style={styles.container}>
-        <Text>{todaysCalorie}</Text>
-        <Text> Enter Calories </Text>
-        <TextInput
-          style={styles.input}
-          keyboardType={'numeric'}
-          onChangeText={setCalorie}
-          value={calorie}
-        />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={addCalorie}
-        >
-          <Text>Press Here</Text>
-        </TouchableOpacity>
-        <StatusBar style="auto" />
-      </View>
-    </TouchableWithoutFeedback>
+      </NavigationContainer>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-});
