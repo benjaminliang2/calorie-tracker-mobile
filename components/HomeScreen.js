@@ -1,21 +1,26 @@
-import { useState, useEffect } from 'react';
-import { useDispatch,  useSelector } from "react-redux";
-import { NutritionValue } from './NutritionValue';
-import { addCalories, addProteins, addCarbohydrates, addFats } from './features/TodaysNutritionSlice';
+import { useSelector } from "react-redux";
 
-import { StatusBar } from "expo-status-bar"
-import { Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native"
+import { Keyboard, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native"
 import Icon from 'react-native-vector-icons/AntDesign'
 
+import { Background1 } from './gradients/Background1';
+import { NutritionValue } from './NutritionValue';
 
 
-export const HomeScreen = () => {
-    const dispatch = useDispatch()
-    const {calories} = useSelector((store) =>
+export const HomeScreen = ({navigation}) => {
+
+
+    return (<>
+        <Background1>
+            <DaySummary navigation={navigation} />
+        </Background1>
+    </>)
+}
+
+export const DaySummary = ({navigation}) => {
+    const { calories, proteins, carbohydrates, fats } = useSelector((store) =>
         store.todaysNutrition
     )
-
-    const [calorie, setCalorie] = useState(0)
 
     return (<>
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -30,25 +35,17 @@ export const HomeScreen = () => {
 
                 <View style={styles.nutritionRow}>
                     <NutritionValue style={styles.nutritionValue} title={'Calories'} value={calories} />
-                    <NutritionValue style={styles.nutritionValue} title={'Protein'} value={125} />
+                    <NutritionValue style={styles.nutritionValue} title={'Protein'} value={proteins} />
                 </View>
                 <View style={styles.nutritionRow}>
-                    <NutritionValue style={styles.nutritionValue} title={'Carb'} value={300} />
-                    <NutritionValue style={styles.nutritionValue} title={'Fat'} value={68} />
+                    <NutritionValue style={styles.nutritionValue} title={'Carb'} value={carbohydrates} />
+                    <NutritionValue style={styles.nutritionValue} title={'Fat'} value={fats} />
                 </View>
 
-                <Text> Enter Calories </Text>
-                <TextInput
-                    style={styles.input}
-                    keyboardType={'numeric'}
-                    onChangeText={setCalorie}
-                    value={calorie}
-                />
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => {
-                        dispatch(addCalories(parseInt(calorie)))
-                        setCalorie(0)
+                        navigation.navigate("AddItemScreen")
                     }}
                 >
                     <Text>Add</Text>
@@ -62,7 +59,6 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },

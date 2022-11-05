@@ -4,6 +4,7 @@ const initialState = {
     proteins: 0,
     carbohydrates: 0,
     fats: 0,
+    items:[]
 
 }
 
@@ -22,9 +23,16 @@ const todaysNutritionSlice = createSlice({
         },
         addFats: (state, {payload}) => {
             state.fats += payload
+        },
+        addItem: (state, {payload}) => {
+            state.items.push(payload)
+            state.calories += payload.calories
+            state.proteins += payload.proteins
+            state.fats += payload.fats
+            state.carbohydrates += payload.carbohydrates
         }
     }, 
 })
 
-export const {addCalories, addProteins, addCarbohydrates, addFats} = todaysNutritionSlice.actions
+export const {addCalories, addProteins, addCarbohydrates, addFats, addItem} = todaysNutritionSlice.actions
 export default todaysNutritionSlice.reducer
