@@ -13,7 +13,7 @@ export const AddItemScreen = () => {
         calories: 0,
         proteins: 0,
         carbohydrates: 0,
-        fast: 0,
+        fats: 0,
     })
 
     return (<>
@@ -23,7 +23,7 @@ export const AddItemScreen = () => {
 
                 <TextInput
                     style={styles.input}
-                    onChangeText={(event) => setItem(prevState => ({...prevState, name: event})) }
+                    onChangeText={(event) => setItem(prevState => ({ ...prevState, name: event }))}
                     value={item.name}
                 />
 
@@ -32,14 +32,14 @@ export const AddItemScreen = () => {
                         <Text> Calories</Text>
                         <TextInput
                             style={styles.input}
-                            onChangeText={(event) => setItem(prevState => ({...prevState, calories: parseInt(event)})) }
+                            onChangeText={(event) => setItem(prevState => ({ ...prevState, calories: parseInt(event) }))}
                             keyboardType={'numeric'}
                             value={item.calories}
                         />
                         <Text> Protein</Text>
                         <TextInput
                             style={styles.input}
-                            onChangeText={(event) => setItem(prevState => ({...prevState, proteins: parseInt(event)})) }
+                            onChangeText={(event) => setItem(prevState => ({ ...prevState, proteins: parseInt(event) }))}
                             keyboardType={'numeric'}
                             value={item.proteins}
                         />
@@ -48,14 +48,14 @@ export const AddItemScreen = () => {
                         <Text> Carbs</Text>
                         <TextInput
                             style={styles.input}
-                            onChangeText={(event) => setItem(prevState => ({...prevState, carbohydrates: parseInt(event)})) }
+                            onChangeText={(event) => setItem(prevState => ({ ...prevState, carbohydrates: parseInt(event) }))}
                             keyboardType={'numeric'}
                             value={item.carbohydrates}
                         />
                         <Text> Fat</Text>
                         <TextInput
                             style={styles.input}
-                            onChangeText={(event) => setItem(prevState => ({...prevState, fats: parseInt(event)})) }
+                            onChangeText={(event) => setItem(prevState => ({ ...prevState, fats: parseInt(event) }))}
                             keyboardType={'numeric'}
                             value={item.fats}
                         />
@@ -67,7 +67,13 @@ export const AddItemScreen = () => {
                         style={styles.button}
                         onPress={() => {
                             dispatch(addItem(item))
-                            console.log(item)
+                            setItem({
+                                name: '',
+                                calories: 0,
+                                proteins: 0,
+                                carbohydrates: 0,
+                                fats: 0,
+                            })
                         }}
                     >
                         <Text>Add</Text>

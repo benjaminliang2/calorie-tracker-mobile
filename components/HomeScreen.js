@@ -7,7 +7,7 @@ import { Background1 } from './gradients/Background1';
 import { NutritionValue } from './NutritionValue';
 
 
-export const HomeScreen = ({navigation}) => {
+export const HomeScreen = ({ navigation }) => {
 
 
     return (<>
@@ -17,15 +17,15 @@ export const HomeScreen = ({navigation}) => {
     </>)
 }
 
-export const DaySummary = ({navigation}) => {
+export const DaySummary = ({ navigation }) => {
     const { calories, proteins, carbohydrates, fats } = useSelector((store) =>
         store.todaysNutrition
     )
 
     return (<>
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 
-            <View style={styles.container}>
+        <View style={styles.container}>
+            <TouchableOpacity onPress={()=>navigation.navigate("DetailedDayView")}>
 
                 <View style={styles.innerTop}>
                     <Icon name='caretleft' size={30} color="#C8FFD4" />
@@ -50,9 +50,9 @@ export const DaySummary = ({navigation}) => {
                 >
                     <Text>Add</Text>
                 </TouchableOpacity>
+            </TouchableOpacity>
 
-            </View>
-        </TouchableWithoutFeedback>
+        </View>
     </>)
 }
 

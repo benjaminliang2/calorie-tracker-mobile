@@ -1,11 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen } from './components/HomeScreen';
-import { AddItemScreen } from './components/AddItemScreen';
 import { Provider } from 'react-redux'
 import store from './redux/store'
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import { HomeScreen } from './components/HomeScreen';
+import { AddItemScreen } from './components/AddItemScreen';
+import { DetailedDayView } from './components/DetailedDayView';
 
 export default function App(navigation) {
   const Stack = createNativeStackNavigator()
@@ -21,6 +22,10 @@ export default function App(navigation) {
           <Stack.Screen
             name="AddItemScreen"
             component={AddItemScreen}
+          />
+          <Stack.Screen
+            name="DetailedDayView"
+            component={DetailedDayView}
           />
         </Stack.Navigator>
 
