@@ -1,23 +1,25 @@
 import { useSelector } from "react-redux"
-import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native"
+import { SafeAreaView, ScrollView, Text, Touchable, TouchableOpacity, View } from "react-native"
+
+import { Background1 } from "./gradients/Background1"
 
 
-
-export const DetailedDayView = ({navigation}) => {
+export const DetailedDayView = ({ navigation }) => {
     const { items } = useSelector((store) => store.todaysNutrition)
 
     return (<>
-        <SafeAreaView>
-            {/* <TouchableOpacity onPress={()=> navigation.goBack()}>
-                <Text> Back </Text>
-            </TouchableOpacity> */}
-            <ScrollView>
-                {items.map(item => (
-                    <FoodCard item={item} />
-                ))}
-            </ScrollView>
-
-        </SafeAreaView>
+        <Background1>
+            <SafeAreaView>
+                <ScrollView>
+                    {items.map(item => (
+                        <FoodCard item={item} />
+                    ))}
+                </ScrollView>
+                <TouchableOpacity onPress={() => navigation.navigate("AddItemScreen")} >
+                    <Text>Add Item</Text>
+                </TouchableOpacity>
+            </SafeAreaView>
+        </Background1>
     </>)
 
 

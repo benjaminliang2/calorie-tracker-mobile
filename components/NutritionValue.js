@@ -14,10 +14,26 @@ export const NutritionValue = (props) => {
     }
 
     return (
-        <View>
-            <Text> {title} </Text>
-            <Text> {value} {label} </Text>
+        <View style = {styles.macrocontainer}>
+            <Text style={styles.title}> {title} </Text>
+            <Text style={styles.subtitle}> {value} {label} </Text>
         </View>
     )
 
+}
+
+const styles = {
+    macrocontainer:{
+        // alignItems: 'center',
+        borderColor: 'green',
+        borderWidth: '2px',
+        borderRadius: '10px',
+        // flex: 1,
+    },
+    title:{
+        fontSize: 25,
+    },
+    subtitle:{
+        fontSize: 15,
+    }
 }

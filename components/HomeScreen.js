@@ -1,19 +1,19 @@
 import { useSelector } from "react-redux";
-
-import { Keyboard, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native"
+// import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, Keyboard, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native"
 import Icon from 'react-native-vector-icons/AntDesign'
 
 import { Background1 } from './gradients/Background1';
 import { NutritionValue } from './NutritionValue';
+import { DateHeader } from "./DateHeader";
 
 
 export const HomeScreen = ({ navigation }) => {
 
-
     return (<>
-        <Background1>
-            <DaySummary navigation={navigation} />
-        </Background1>
+            <SafeAreaView>
+                <DaySummary navigation={navigation} />
+            </SafeAreaView>
     </>)
 }
 
@@ -25,31 +25,31 @@ export const DaySummary = ({ navigation }) => {
     return (<>
 
         <View style={styles.container}>
-            <TouchableOpacity onPress={()=>navigation.navigate("DetailedDayView")}>
+            <DateHeader/>
+            <TouchableOpacity onPress={() => navigation.navigate("DetailedDayView")}>
 
-                <View style={styles.innerTop}>
+                <View style={styles.title}>
                     <Icon name='caretleft' size={30} color="#C8FFD4" />
                     <Text style={styles.innerToptitle}>Today</Text>
                     <Icon name='caretright' size={30} color="#C8FFD4" />
                 </View>
 
-                <View style={styles.nutritionRow}>
-                    <NutritionValue style={styles.nutritionValue} title={'Calories'} value={calories} />
-                    <NutritionValue style={styles.nutritionValue} title={'Protein'} value={proteins} />
-                </View>
-                <View style={styles.nutritionRow}>
-                    <NutritionValue style={styles.nutritionValue} title={'Carb'} value={carbohydrates} />
-                    <NutritionValue style={styles.nutritionValue} title={'Fat'} value={fats} />
+                <View>
+                    <NutritionValue title={'Calories'} value={calories} />
+                    <NutritionValue title={'Protein'} value={proteins} />
+                    <NutritionValue title={'Carb'} value={carbohydrates} />
+                    <NutritionValue title={'Fat'} value={fats} />
                 </View>
 
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => {
-                        navigation.navigate("AddItemScreen")
-                    }}
-                >
-                    <Text>Add</Text>
-                </TouchableOpacity>
+
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => {
+                    navigation.navigate("AddItemScreen")
+                }}
+            >
+                <Text>Add</Text>
             </TouchableOpacity>
 
         </View>
@@ -58,21 +58,17 @@ export const DaySummary = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        height: '100%',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        // flex: 1,
     },
-    innerTop: {
-        flexDirection: 'row'
+    title: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     innerToptitle: {
         fontSize: 30
-    },
-    nutritionRow: {
-        flexDirection: "row"
-    },
-    nutritionValue: {
-        flex: 2,
     },
 
     button: {
