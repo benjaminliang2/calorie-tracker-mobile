@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts, Montserrat_400Regular,} from '@expo-google-fonts/montserrat';
 import { HomeScreen } from './components/HomeScreen';
 import { AddItemScreen } from './components/AddItemScreen';
-import { DetailedDayView } from './components/DetailedDayView';
+import { MealsSummary } from './components/MealsSummary';
 
 export default function App(navigation) {
   const Stack = createNativeStackNavigator()
@@ -36,8 +36,8 @@ export default function App(navigation) {
             component={AddItemScreen}
           />
           <Stack.Screen
-            name="DetailedDayView"
-            component={DetailedDayView}
+            name="MealsSummary"
+            component={MealsSummary}
           />
         </Stack.Navigator>
 
