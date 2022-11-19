@@ -3,22 +3,30 @@ import store from './redux/store'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useFonts } from 'expo-font';
 
-import { useFonts, Montserrat_400Regular,} from '@expo-google-fonts/montserrat';
 import { HomeScreen } from './components/HomeScreen';
 import { AddItemScreen } from './components/AddItemScreen';
 import { MealsSummary } from './components/MealsSummary';
 
+let customFonts = {
+  MontserratRegular: require('./assets/fonts/Montserrat-Regular.ttf'),
+  MontserratMedium: require('./assets/fonts/Montserrat-Medium.ttf'),
+  MontserratBold: require('./assets/fonts/Montserrat-Bold.ttf'),
+}
+
+
 export default function App(navigation) {
+
+  const [isLoaded] = useFonts(customFonts);
+
+  if (!isLoaded) {
+    return null
+  }
+
   const Stack = createNativeStackNavigator()
 
-  let [fontsLoaded] = useFonts({
-    Montserrat_400Regular,
-  });
 
-  if (!fontsLoaded) {
-    return null;
-  }
 
 
   return (

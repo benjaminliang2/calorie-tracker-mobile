@@ -1,19 +1,8 @@
 import { Text, View } from "react-native"
-import { useFonts, Montserrat_400Regular, Montserrat_600SemiBold, Montserrat_700Bold } from '@expo-google-fonts/montserrat';
 
 
 export const NutritionValue = (props) => {
     const { title, value } = props
-
-    let [fontsLoaded] = useFonts({
-        Montserrat_400Regular,
-        Montserrat_600SemiBold,
-        Montserrat_700Bold,
-    });
-
-    if (!fontsLoaded) {
-        return null;
-    }
 
     let label = ''
     switch (title) {
@@ -45,11 +34,11 @@ const styles = {
     },
     title: {
         fontSize: 18,
-        fontFamily: 'Montserrat_600SemiBold',
+        fontFamily: 'MontserratRegular',
 
     },
     subtitle: {
         fontSize: 25,
-        fontFamily: 'Montserrat_700Bold'
+        fontFamily: 'MontserratBold'
     }
 }
