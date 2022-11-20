@@ -8,7 +8,7 @@ const TO_COLOR = 'rgb(225, 213, 255 )';
 export const Background1 = ({ children }) => {
     return (
         <View style={ { flex: 1 } }>
-            <Svg height="100%" width="100%" style={ StyleSheet.absoluteFillObject }>
+            <Svg style={ StyleSheet.absoluteFillObject }>
                 <Defs>
                     <LinearGradient id="grad" x1="0%" y1="50%" x2="45%" y2="100%">
                         <Stop offset="0" stopColor={ FROM_COLOR }/>

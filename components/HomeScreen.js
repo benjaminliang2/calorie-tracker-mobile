@@ -10,7 +10,7 @@ import { MealsSummary } from "./MealsSummary";
 export const HomeScreen = ({ navigation }) => {
 
     return (<>
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{  }}>
             <View style={styles.container}>
                 <DateHeader />
                 <DailySummary navigation={navigation} />
@@ -29,13 +29,11 @@ export const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         height: '100%',
-        alignItems: 'center',
-        flex: 1,
+        // alignItems: 'center',
     },
     button: {
         alignItems: "center",
         backgroundColor: "#DDDDDD",
         padding: 10,
-        flex: 1
     },
 });

@@ -13,6 +13,8 @@ let customFonts = {
   MontserratRegular: require('./assets/fonts/Montserrat-Regular.ttf'),
   MontserratMedium: require('./assets/fonts/Montserrat-Medium.ttf'),
   MontserratBold: require('./assets/fonts/Montserrat-Bold.ttf'),
+  MontserratSemiBold: require('./assets/fonts/Montserrat-SemiBold.ttf'),
+  MontserratThin: require('./assets/fonts/Montserrat-Thin.ttf'),
 }
 
 
