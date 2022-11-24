@@ -1,13 +1,13 @@
 import { Image, Text, View } from "react-native"
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
-export const MealCard = ({ item = { name: 'Strawberry Smoothie', calories: 579, proteins: 20, carbohydrates: 10, fats: 4 } }) => {
-    const { name, calories, proteins, carbohydrates, fats } = item
+export const MealCard = ({ item = {image: '', name: 'Strawberry Smoothie', calories: 579, proteins: 20, carbohydrates: 10, fats: 4 } }) => {
+    const { image, name, calories, proteins, carbohydrates, fats } = item
     return (
         <>
 
             <View style={cardStyles.container}>
-                <Image style={{ width: 60, height: 60, borderColor: 'white', borderWidth: '4' }} />
+                <Image source={{uri: image}} style={{ width: 60, height: 60, borderColor: 'white', borderWidth: '4' }} />
                 <View style={{ flex:1 , justifyContent: 'space-between' }}>
 
                     <Text style={cardStyles.title}>{name}</Text>

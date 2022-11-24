@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 
 import { HomeScreen } from './components/HomeScreen';
-import { AddItemScreen } from './components/AddItemScreen';
+import { AddItemModal } from './components/AddItemModal';
 import { MealsSummary } from './components/MealsSummary';
 
 let customFonts = {
@@ -41,10 +41,7 @@ export default function App(navigation) {
             name="Home"
             component={HomeScreen}
           />
-          <Stack.Screen
-            name="AddItemScreen"
-            component={AddItemScreen}
-          />
+        
           <Stack.Screen
             name="MealsSummary"
             component={MealsSummary}

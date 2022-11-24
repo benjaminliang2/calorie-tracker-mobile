@@ -5,7 +5,7 @@ import CircularProgress from "react-native-circular-progress-indicator";
 import { NutritionValue } from './NutritionValue';
 
 
-export const DailySummary = ({ navigation }) => {
+export const DailySummary = () => {
     const { calories, proteins, carbohydrates, fats } = useSelector((store) =>
         store.todaysNutrition
     )
