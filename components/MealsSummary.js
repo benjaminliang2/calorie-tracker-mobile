@@ -2,27 +2,39 @@ import { useSelector } from "react-redux"
 import { SafeAreaView, ScrollView, Text, Touchable, TouchableOpacity, View } from "react-native"
 
 import { Background1 } from "./gradients/Background1"
-import {MealCard} from './MealCard'
+import { MealCard } from './MealCard'
 
-export const MealsSummary = ({ navigation }) => {
+export const MealsSummary = () => {
     const { items } = useSelector((store) => store.todaysNutrition)
 
     return (<>
-        <Background1>
-            {/* <SafeAreaView> */}
-                <ScrollView>
-                    {items.map(item => (
-                        <MealCard item={item} />
-                    ))}
-                    <MealCard />
-                    <MealCard />
-                </ScrollView>
+            <Text style={styles.title}>Food</Text>
+            <ScrollView >
+                {items.map(item => (
+                    <MealCard item={item} />
+                ))}
+                <MealCard />
+                <MealCard />
+            </ScrollView>
 
-            {/* </SafeAreaView> */}
-        </Background1>
+
     </>)
+}
 
-
-
+const styles = {
+    container: {
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.35,
+        shadowRadius: 8,
+    },
+    title:{
+        fontFamily: 'MontserratMedium',
+        marginLeft: 15,
+        fontSize: 20,
+    }
 }
 

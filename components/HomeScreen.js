@@ -13,7 +13,7 @@ export const HomeScreen = ({ navigation }) => {
 
     const [showModal, setShowModal] = useState(false)
     return (<>
-        <SafeAreaView style={{}}>
+        <SafeAreaView>
             <View style={styles.container}>
                 <DateHeader />
                 <DailySummary />
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     container: {
         height: '100%',
         // alignItems: 'center',
+        backgroundColor: 'white',
     },
     button: {
         alignItems: "center",
