@@ -5,7 +5,7 @@ import { Background1 } from "./gradients/Background1"
 import { MealCard } from './MealCard'
 
 export const MealsSummary = () => {
-    const { items } = useSelector((store) => store.todaysNutrition)
+    const { items } = useSelector((store) => store.nutrition)
 
     return (<>
             <Text style={styles.title}>Food</Text>
@@ -13,8 +13,6 @@ export const MealsSummary = () => {
                 {items.map(item => (
                     <MealCard item={item} />
                 ))}
-                <MealCard />
-                <MealCard />
             </ScrollView>
 
 

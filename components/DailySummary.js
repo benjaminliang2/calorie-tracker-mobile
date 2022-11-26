@@ -7,9 +7,9 @@ import { NutritionValue } from './NutritionValue';
 
 export const DailySummary = () => {
     const { calories, proteins, carbohydrates, fats } = useSelector((store) =>
-        store.todaysNutrition
+        store.nutrition
     )
-    
+
 
     return (<>
         {/* <TouchableOpacity onPress={() => navigation.navigate("DetailedDayView")} style={{ flex: 1 }}> */}

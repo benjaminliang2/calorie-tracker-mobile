@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux"
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import CheckBox from 'expo-checkbox'
 
-import { addItem } from "../redux/features/TodaysNutritionSlice"
+import { addItem } from "../redux/features/NutritionSlice"
 import { Background1 } from "./gradients/Background1"
 
 
