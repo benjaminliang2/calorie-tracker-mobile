@@ -21,7 +21,8 @@ export const HomeScreen = ({ navigation }) => {
         // AsyncStorage.clear()
         let todayDate = new Date()
         todayDate = todayDate.toLocaleDateString()
-        dispatch(fetchNutrition(todayDate))
+
+        dispatch(fetchNutrition({id: todayDate}))
     }, [])
     const [showModal, setShowModal] = useState(false)
     return (<>

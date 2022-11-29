@@ -9,10 +9,7 @@ export const DailySummary = () => {
     const { calories, proteins, carbohydrates, fats } = useSelector((store) =>
         store.nutrition
     )
-
-
     return (<>
-        {/* <TouchableOpacity onPress={() => navigation.navigate("DetailedDayView")} style={{ flex: 1 }}> */}
         <View style={{ flexDirection: 'row' }}>
             <View style={{ flex: 1, alignItems: 'center'}}>
 
@@ -34,9 +31,6 @@ export const DailySummary = () => {
             </View>
 
         </View>
-
-
-        {/* </TouchableOpacity> */}
 
     </>)
 }

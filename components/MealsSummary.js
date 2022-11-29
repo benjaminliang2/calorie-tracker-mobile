@@ -14,8 +14,6 @@ export const MealsSummary = () => {
                     <MealCard item={item} />
                 ))}
             </ScrollView>
-
-
     </>)
 }
 
