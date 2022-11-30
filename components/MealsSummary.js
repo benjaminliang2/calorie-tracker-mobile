@@ -11,7 +11,7 @@ export const MealsSummary = () => {
             <Text style={styles.title}>Food</Text>
             <ScrollView >
                 {items.map(item => (
-                    <MealCard item={item} />
+                    <MealCard item={item} key={item.id}/>
                 ))}
             </ScrollView>
     </>)

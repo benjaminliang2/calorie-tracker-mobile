@@ -10,27 +10,46 @@ export const DailySummary = () => {
         store.nutrition
     )
     return (<>
-        <View style={{ flexDirection: 'row' }}>
-            <View style={{ flex: 1, alignItems: 'center'}}>
-
+    <Text style={styles.title}>Today's Nutrition</Text>
+        <View style={styles.container}>
+            <View style={{  alignItems: 'center'}}>
                 <CircularProgress
                     value={calories}
                     radius={80}
                     duration={2000}
-                    progressValueColor={'black'}
+                    progressValueColor={'#285430'}
                     maxValue={2000}
                     title={'cal'}
-                    titleColor={'black'}
+                    titleColor={'#285430'}
                     titleStyle={{ fontWeight: 'bold' }}
                 />
             </View>
-            <View style={{ flex: 1, alignItems: 'center' }} >
-                <NutritionValue title={'Protein'} value={proteins} />
-                <NutritionValue title={'Carb'} value={carbohydrates} />
-                <NutritionValue title={'Fat'} value={fats} />
+            <View style={{  alignItems: 'center' }} >
+                <NutritionValue title={'Protein'} valueConsumed={proteins} valueRequired={150}/>
+                <NutritionValue title={'Carb'} valueConsumed={carbohydrates} valueRequired={300} />
+                <NutritionValue title={'Fat'} valueConsumed={fats} valueRequired={90}/>
             </View>
 
         </View>
 
     </>)
+}
+
+const styles ={
+    title: {
+        marginLeft: 10,
+        marginTop: 15,
+        marginBottom: 8,
+        fontFamily: 'MontserratBold',
+        fontSize: 28, 
+    },
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        paddingVertical: 20,
+        margin: 10,
+        borderRadius: 20,
+        backgroundColor: '#BDF0CC',
+
+    }
 }

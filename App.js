@@ -6,8 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 
 import { HomeScreen } from './components/HomeScreen';
-import { AddItemModal } from './components/AddItemModal';
-import { MealsSummary } from './components/MealsSummary';
+import { MenuProvider } from 'react-native-popup-menu';
 
 let customFonts = {
   MontserratRegular: require('./assets/fonts/Montserrat-Regular.ttf'),
@@ -34,22 +33,20 @@ export default function App(navigation) {
   return (
     <Provider store={store}>
       {/* <SafeAreaProvider> */}
-
-      <NavigationContainer>
-        <Stack.Navigator>
+      {/* <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-          />
-        
-          <Stack.Screen
-            name="MealsSummary"
-            component={MealsSummary}
+            options={{headerStyle:{backgroundColor: '#ffff'}}}
           />
         </Stack.Navigator>
 
-      </NavigationContainer>
+      </NavigationContainer> */}
       {/* </SafeAreaProvider> */}
+      <MenuProvider>
+        <HomeScreen />
+      </MenuProvider>
     </Provider>
   );
 }

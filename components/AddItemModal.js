@@ -12,10 +12,12 @@ import { Background1 } from "./gradients/Background1"
 
 
 export const AddItemModal = ({ showModal, setShowModal }) => {
+    let today = new Date()
     const dispatch = useDispatch()
     const [item, setItem] = useState({
         image:'https://reactnative.dev/img/tiny_logo.png', 
         name: '',
+        id:'',
         calories: 0,
         proteins: 0,
         carbohydrates: 0,
@@ -190,6 +192,7 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
                                 onPress={() => item.name.trim() ?
 
                                     (
+                                        setItem(prevState => ({ ...prevState, id: item.name + today.getTime()})),
                                         dispatch(addItem(item)),
                                         setShowModal(false)
                                     )

@@ -1,8 +1,10 @@
+import * as Progress from 'react-native-progress'
 import { Text, View } from "react-native"
 
 
 export const NutritionValue = (props) => {
-    const { title, value } = props
+    const { title, valueConsumed, valueRequired } = props
+
 
     let label = ''
     switch (title) {
@@ -16,7 +18,8 @@ export const NutritionValue = (props) => {
     return (
         <View style={styles.macrocontainer}>
             <Text style={styles.title}> {title} </Text>
-            <Text style={styles.subtitle}> {value} {label} </Text>
+            <Progress.Bar progress={valueConsumed/valueRequired} width={75} height={2} color="#5F8D4E" />
+            <Text style={styles.subtitle}> {valueConsumed} / {valueRequired} {label} </Text>
         </View>
     )
 
@@ -25,20 +28,21 @@ export const NutritionValue = (props) => {
 const styles = {
     macrocontainer: {
         alignItems: 'center',
-        borderColor: '#53B175',
-        borderWidth: '1px',
-        borderRadius: '15px',
         padding: 7,
-        width: '50%'
+        width: '100%',
+        marginVertical: 5,
+
 
     },
     title: {
-        fontSize: 18,
-        fontFamily: 'MontserratRegular',
-
+        fontSize: 15,
+        fontFamily: 'MontserratSemiBold',
+        color: '#A4BE7B'
     },
     subtitle: {
-        fontSize: 25,
-        fontFamily: 'MontserratBold'
+        fontSize: 15,
+        fontFamily: 'MontserratBold',
+        color: '#285430'
+
     }
 }

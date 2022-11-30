@@ -1,9 +1,9 @@
 import { configureStore, createListenerMiddleware, isAnyOf,} from "@reduxjs/toolkit";
-import nutritionReducer, {addItem, fetchNutrition, saveNutrition, setDate} from './features/NutritionSlice'
+import nutritionReducer, {addItem, fetchNutrition, removeItem, saveNutrition, setDate} from './features/NutritionSlice'
 
 const listenerMiddleWare = createListenerMiddleware()
 listenerMiddleWare.startListening({
-    matcher: isAnyOf(addItem),
+    matcher: isAnyOf(addItem, removeItem),
     effect: async (action, listenerAPI) => {
         listenerAPI.cancelActiveListeners();
         await listenerAPI.delay(50)

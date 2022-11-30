@@ -29,7 +29,7 @@ export const DateHeader = () => {
     const dispatch = useDispatch()
     // const width = Dimensions.get('window').width
     const renderItem = ({ item }) => {
-        const backgroundColor = item.id === date.id ? "#033F40" : "#f9c2ff";
+        const backgroundColor = item.id === date.id ? "#033F40" : "#BDF0CC";
         const color = item.id === date.id ? '#BDF0CC' : '#033F40';
 
         return (
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginBottom: 8,
         fontFamily: 'MontserratBold',
-        fontSize: 26, 
+        fontSize: 18, 
     },
     dateTitle: {
         fontSize: 18,

@@ -65,6 +65,15 @@ const nutritionSlice = createSlice({
             state.fats += payload.fats
             state.carbohydrates += payload.carbohydrates
         },
+        removeItem: (state, {payload}) => {
+            state.items = state.items.filter(function(item){
+                return item.id !== payload.id
+            })
+            state.calories -= payload.calories
+            state.proteins -= payload.proteins
+            state.fats -= payload.fats
+            state.carbohydrates -= payload.carbohydrates
+        },
         setDate: (state, {payload}) =>{
             state.date = payload
             console.log(state)
@@ -92,5 +101,5 @@ const nutritionSlice = createSlice({
 
 
 
-export const { addCalories, addProteins, addCarbohydrates, addFats, addItem, setDate } = nutritionSlice.actions
+export const { addCalories, addProteins, addCarbohydrates, addFats, addItem, removeItem, setDate } = nutritionSlice.actions
 export default nutritionSlice.reducer
