@@ -8,7 +8,6 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 import CheckBox from 'expo-checkbox'
 
 import { addItem } from "../redux/features/NutritionSlice"
-import { Background1 } from "./gradients/Background1"
 
 
 export const AddItemModal = ({ showModal, setShowModal }) => {
@@ -85,7 +84,6 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
                     setShowModal(!showModal);
                 }}
             >
-                {/* <Background1> */}
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
 
@@ -209,7 +207,6 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
 
                     </View>
                 </View>
-                {/* </Background1> */}
             </Modal>
         </View>
     </>)

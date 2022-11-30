@@ -1,11 +1,13 @@
+import { useState } from "react"
+import { useDispatch } from "react-redux"
 import { Image, Text, View } from "react-native"
 import { Menu, MenuOption, MenuOptions, MenuTrigger } from "react-native-popup-menu"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { useDispatch } from "react-redux"
 import { removeItem } from "../redux/features/NutritionSlice"
+import { ConfirmModal } from "./ConfirmModal"
 
 export const MealCard = ({ item = { image: 'https://reactnative.dev/img/tiny_logo.png', name: 'Strawberry Smoothie', calories: 579, proteins: 20, carbohydrates: 10, fats: 4 } }) => {
-    const dispatch = useDispatch()
+    const [deleteModal, setDeleteModal] = useState(false)
     const { image, name, calories, proteins, carbohydrates, fats } = item
     return (
         <>
@@ -42,12 +44,23 @@ export const MealCard = ({ item = { image: 'https://reactnative.dev/img/tiny_log
                     </MenuTrigger>
                     <MenuOptions>
                         <MenuOption onSelect={() => alert(`Save`)} text='Edit' />
-                        <MenuOption onSelect={() => dispatch(removeItem(item))} >
+                        <MenuOption onSelect={() => setDeleteModal(true)} >
                             <Text style={{ color: 'red' }}>Delete</Text>
                         </MenuOption>
                     </MenuOptions>
                 </Menu>
             </View>
+
+            {deleteModal &&
+                <ConfirmModal
+                    title="Are you sure you want to delete food?" 
+                    action={removeItem} 
+                    actionName="Delete" 
+                    value={item}
+                    setShowModal={setDeleteModal}
+                    showModal={deleteModal}
+
+                />}
         </>
     )
 }
