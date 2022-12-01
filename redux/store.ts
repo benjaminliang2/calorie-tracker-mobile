@@ -1,4 +1,5 @@
 import { configureStore, createListenerMiddleware, isAnyOf,} from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 import nutritionReducer, {addItem, fetchNutrition, removeItem, saveNutrition, setDate} from './features/NutritionSlice'
 
 const listenerMiddleWare = createListenerMiddleware()
@@ -20,7 +21,7 @@ listenerMiddleWare.startListening({
     }
 })
 
-export default configureStore({
+const store =  configureStore({
     reducer:{
         nutrition: nutritionReducer,
     },
@@ -29,3 +30,7 @@ export default configureStore({
 
 })
 
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+
+export default store

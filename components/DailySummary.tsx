@@ -1,16 +1,24 @@
 import { useSelector } from "react-redux";
-import { SafeAreaView, Keyboard, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native"
+import { RootState } from "../redux/store";
+import { StyleSheet, Text, View } from "react-native"
+
 import CircularProgress from "react-native-circular-progress-indicator";
 
 import { NutritionValue } from './NutritionValue';
 
 
-export const DailySummary = () => {
-    const { calories, proteins, carbohydrates, fats } = useSelector((store) =>
+export const DailySummary = (): JSX.Element => {
+    
+    const { calories, proteins, carbohydrates, fats } = useSelector((store: RootState) =>
         store.nutrition
     )
+    let title: string = "Today's Nutrition"
+    let proteinRequired: number = 150
+    let carbsRequired: number = 300
+    let fatsRequired: number = 90
+
     return (<>
-    <Text style={styles.title}>Today's Nutrition</Text>
+    <Text style={styles.title}>{title}</Text>
         <View style={styles.container}>
             <View style={{  alignItems: 'center'}}>
                 <CircularProgress
@@ -25,9 +33,9 @@ export const DailySummary = () => {
                 />
             </View>
             <View style={{  alignItems: 'center' }} >
-                <NutritionValue title={'Protein'} valueConsumed={proteins} valueRequired={150}/>
-                <NutritionValue title={'Carb'} valueConsumed={carbohydrates} valueRequired={300} />
-                <NutritionValue title={'Fat'} valueConsumed={fats} valueRequired={90}/>
+                <NutritionValue title={'Protein'} valueConsumed={proteins} valueRequired={proteinRequired}/>
+                <NutritionValue title={'Carb'} valueConsumed={carbohydrates} valueRequired={carbsRequired} />
+                <NutritionValue title={'Fat'} valueConsumed={fats} valueRequired={fatsRequired}/>
             </View>
 
         </View>
@@ -35,7 +43,7 @@ export const DailySummary = () => {
     </>)
 }
 
-const styles ={
+const styles = StyleSheet.create({
     title: {
         marginLeft: 10,
         marginTop: 15,
@@ -52,4 +60,4 @@ const styles ={
         backgroundColor: '#BDF0CC',
 
     }
-}
+})

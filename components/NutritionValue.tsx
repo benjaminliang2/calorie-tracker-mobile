@@ -1,12 +1,19 @@
 import * as Progress from 'react-native-progress'
-import { Text, View } from "react-native"
+import { Text, View, StyleSheet } from "react-native"
+
+interface Item {
+    title: string,
+    valueConsumed: number, 
+    valueRequired: number,
+}
 
 
-export const NutritionValue = (props) => {
+
+export const NutritionValue = (props: Item): JSX.Element => {
     const { title, valueConsumed, valueRequired } = props
 
 
-    let label = ''
+    let label:string = ''
     switch (title) {
         case 'Calories':
             label = 'cal'
@@ -25,7 +32,7 @@ export const NutritionValue = (props) => {
 
 }
 
-const styles = {
+const styles = StyleSheet.create ({
     macrocontainer: {
         alignItems: 'center',
         padding: 7,
@@ -45,4 +52,4 @@ const styles = {
         color: '#285430'
 
     }
-}
+})

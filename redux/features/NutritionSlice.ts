@@ -1,7 +1,36 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import { RootState, AppDispatch } from '../store'
+
 const today = new Date()
-const initialState = {
+
+export interface Item {
+    image: string,
+    name: string, 
+    id: string,
+    calories: number,
+    proteins: number,
+    carbohydrates: number, 
+    fats: number, 
+}
+
+interface Custom_date {
+    id: string,
+    title: string,
+    day: string
+}
+
+interface NutritionState {
+    date: Custom_date,
+    calories: number,
+    proteins: number,
+    carbohydrates: number, 
+    fats: number, 
+    items: Item[]
+}
+
+
+const initialState: NutritionState = {
     date: {
         id:`${today.toLocaleDateString()}`,
         title:  `${today.getDate()}`,
@@ -14,9 +43,14 @@ const initialState = {
     items: []
 
 }
-export const saveNutrition = createAsyncThunk(
-    'nutrition/saveNutrition',
-    async (payload, thunkAPI) => {
+export const saveNutrition = createAsyncThunk<
+    void,
+    void,
+    {
+        dispatch: AppDispatch,
+        state: RootState,
+    }
+    >('nutrition/saveNutrition', async (payload, thunkAPI) => {
         const data = thunkAPI.getState().nutrition
         const date = data.date.id
         try {
@@ -24,17 +58,19 @@ export const saveNutrition = createAsyncThunk(
         } catch (error) {
             alert(error)
         }
-    }
-)
+    })
 
-export const fetchNutrition = createAsyncThunk(
-    'nutrition/fetchNutrition',
-    async (payload, thunkAPI) => {
-        //payload should be the date OBJECT you are fetching data for. payload.id is the ID for date
+export const fetchNutrition = createAsyncThunk<
+    NutritionState,
+    Custom_date,
+    {
+        dispatch: AppDispatch,
+        state: RootState,
+    }
+    >('nutrition/fetchNutrition',async (payload, thunkAPI) => {
         try {
             const data = await AsyncStorage.getItem(payload.id)
             if (data != null) return JSON.parse(data)
-            // throw new Error('No data')
             return Promise.reject()
         } catch (error) {
             alert(error)
@@ -79,23 +115,23 @@ const nutritionSlice = createSlice({
             console.log(state)
         },
     },
-    extraReducers: {
-        [fetchNutrition.fulfilled]: (state, {payload}) => {
+    extraReducers: (builder) => {
+        builder.addCase(fetchNutrition.fulfilled, (state, { payload }) => {
             state.date = payload.date
             state.calories = payload.calories
             state.proteins = payload.proteins
             state.carbohydrates = payload.carbohydrates
             state.fats = payload.fats
             state.items = payload.items 
-        }, 
-        [fetchNutrition.rejected]: (state, {payload}) => {
+        })
+        builder.addCase(fetchNutrition.rejected, (state, { payload }) => {
             console.log('no data found')
             state.calories = 0
             state.proteins = 0
             state.carbohydrates = 0
             state.fats = 0
             state.items = []
-        },
+        })
     },
 })
 

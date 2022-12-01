@@ -1,14 +1,19 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { Image, Text, View } from "react-native"
+import { Image, StyleSheet, Text, View } from "react-native"
 import { Menu, MenuOption, MenuOptions, MenuTrigger } from "react-native-popup-menu"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { removeItem } from "../redux/features/NutritionSlice"
 import { ConfirmModal } from "./ConfirmModal"
 
-export const MealCard = ({ item = { image: 'https://reactnative.dev/img/tiny_logo.png', name: 'Strawberry Smoothie', calories: 579, proteins: 20, carbohydrates: 10, fats: 4 } }) => {
+import { Item } from "../redux/features/NutritionSlice"
+interface Props {
+    item: Item,
+    key: string
+}
+export const MealCard = (props:Props) => {
     const [deleteModal, setDeleteModal] = useState(false)
-    const { image, name, calories, proteins, carbohydrates, fats } = item
+    const { image, name, calories, proteins, carbohydrates, fats } = props.item
     return (
         <>
             <View style={styles.container}>
@@ -56,7 +61,7 @@ export const MealCard = ({ item = { image: 'https://reactnative.dev/img/tiny_log
                     title="Are you sure you want to delete food?" 
                     action={removeItem} 
                     actionName="Delete" 
-                    value={item}
+                    value={props.item}
                     setShowModal={setDeleteModal}
                     showModal={deleteModal}
 
@@ -64,7 +69,7 @@ export const MealCard = ({ item = { image: 'https://reactnative.dev/img/tiny_log
         </>
     )
 }
-const styles = {
+const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         padding: 7,
@@ -106,5 +111,5 @@ const styles = {
         flex: 1
     },
 
-}
+})
 

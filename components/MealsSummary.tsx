@@ -1,14 +1,15 @@
 import { useSelector } from "react-redux"
-import { SafeAreaView, ScrollView, Text, Touchable, TouchableOpacity, View } from "react-native"
+import { RootState } from "../redux/store";
 
-import { Background1 } from "./gradients/Background1"
+import { ScrollView, StyleSheet, Text} from "react-native"
+
 import { MealCard } from './MealCard'
 
-export const MealsSummary = () => {
-    const { items } = useSelector((store) => store.nutrition)
-
+export const MealsSummary = (): JSX.Element => {
+    const { items } = useSelector((store: RootState) => store.nutrition)
+    let title: string = 'Food'
     return (<>
-            <Text style={styles.title}>Food</Text>
+            <Text style={styles.title}>{title}</Text>
             <ScrollView >
                 {items.map(item => (
                     <MealCard item={item} key={item.id}/>
@@ -17,7 +18,7 @@ export const MealsSummary = () => {
     </>)
 }
 
-const styles = {
+const styles = StyleSheet.create({
     container: {
         shadowColor: '#000',
         shadowOffset: {
@@ -32,5 +33,5 @@ const styles = {
         marginLeft: 15,
         fontSize: 20,
     }
-}
+})
 
