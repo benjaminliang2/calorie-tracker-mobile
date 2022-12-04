@@ -1,9 +1,18 @@
+import { AnyAction } from "@reduxjs/toolkit";
 import { Button, Modal, Pressable, StyleSheet, Text, View } from "react-native";
-import { useDispatch } from "react-redux"
+import { useAppSelector, useAppDispatch } from "../redux/hooks";
 
+interface Props {
+    title: string,
+    action: any, //TODO: specific type
+    actionName: string,
+    value: any,
+    setShowModal: Function,
+    showModal: boolean,
+}
 
-export const ConfirmModal = ({ title, action, actionName, value, setShowModal, showModal }) => {
-    const dispatch = useDispatch()
+export const ConfirmModal = ({ title, action, actionName, value, setShowModal, showModal }: Props) => {
+    const dispatch = useAppDispatch()
 
     return <>
         {/* <View style={styles.centeredView}> */}
@@ -12,15 +21,16 @@ export const ConfirmModal = ({ title, action, actionName, value, setShowModal, s
             transparent={true}
             visible={showModal}
             onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
+                alert('Modal has been closed.');
                 setShowModal(!showModal);
             }}
         >
+
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                     <Text>{title}</Text>
                     <View style={styles.buttonRow}>
-                        <Button title="Cancel" onPress={() => setShowModal(false)} style={styles.cancelButton} />
+                        <Button title="Cancel" onPress={() => setShowModal(false)}/>
                         <Pressable style={styles.actionButton} onPress={() => (dispatch(action(value)), setShowModal(false))}>
                             <Text style={styles.actionText}>{actionName}</Text>
                         </Pressable>

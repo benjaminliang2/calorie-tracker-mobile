@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useAppDispatch } from "../redux/hooks"
 import { Image, StyleSheet, Text, View } from "react-native"
 import { Menu, MenuOption, MenuOptions, MenuTrigger } from "react-native-popup-menu"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -12,6 +12,7 @@ interface Props {
     key: string
 }
 export const MealCard = (props:Props) => {
+    const dispatch = useAppDispatch()
     const [deleteModal, setDeleteModal] = useState(false)
     const { image, name, calories, proteins, carbohydrates, fats } = props.item
     return (
@@ -49,7 +50,7 @@ export const MealCard = (props:Props) => {
                     </MenuTrigger>
                     <MenuOptions>
                         <MenuOption onSelect={() => alert(`Save`)} text='Edit' />
-                        <MenuOption onSelect={() => setDeleteModal(true)} >
+                        <MenuOption onSelect={() => dispatch(removeItem(props.item))} >
                             <Text style={{ color: 'red' }}>Delete</Text>
                         </MenuOption>
                     </MenuOptions>

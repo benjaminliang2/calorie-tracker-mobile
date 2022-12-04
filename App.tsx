@@ -1,7 +1,5 @@
 import { Provider } from 'react-redux'
 import store from './redux/store'
-
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 
@@ -17,33 +15,15 @@ let customFonts = {
 }
 
 
-export default function App(navigation) {
+export default function App() {
 
   const [isLoaded] = useFonts(customFonts);
-
   if (!isLoaded) {
     return null
   }
 
-  const Stack = createNativeStackNavigator()
-
-
-
-
   return (
     <Provider store={store}>
-      {/* <SafeAreaProvider> */}
-      {/* <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{headerStyle:{backgroundColor: '#ffff'}}}
-          />
-        </Stack.Navigator>
-
-      </NavigationContainer> */}
-      {/* </SafeAreaProvider> */}
       <MenuProvider>
         <HomeScreen />
       </MenuProvider>

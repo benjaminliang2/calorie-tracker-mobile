@@ -1,5 +1,4 @@
 import { configureStore, createListenerMiddleware, isAnyOf,} from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
 import nutritionReducer, {addItem, fetchNutrition, removeItem, saveNutrition, setDate} from './features/NutritionSlice'
 
 const listenerMiddleWare = createListenerMiddleware()

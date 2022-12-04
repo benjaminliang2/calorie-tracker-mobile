@@ -2,21 +2,24 @@ import { useRef } from "react"
 import { useState, useEffect } from "react"
 import { Button, ImageBackground, Modal, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import * as ImagePicker from 'expo-image-picker'
-import { useDispatch } from "react-redux"
-
+import { useAppDispatch } from "../redux/hooks"
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import CheckBox from 'expo-checkbox'
 
 import { addItem } from "../redux/features/NutritionSlice"
 
+interface Props {
+    showModal: boolean, 
+    setShowModal: Function
+}
 
 export const AddItemModal = ({ showModal, setShowModal }) => {
     let today = new Date()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const [item, setItem] = useState({
-        image:'https://reactnative.dev/img/tiny_logo.png', 
+        image: 'https://reactnative.dev/img/tiny_logo.png',
         name: '',
-        id:'',
+        id: '',
         calories: 0,
         proteins: 0,
         carbohydrates: 0,
@@ -27,40 +30,27 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
     const proteinInput = useRef(null)
     const fatInput = useRef(null)
 
-
-    const Test = ({ inputRef, value }) => {
-        return (
-            <Pressable style={styles.container} onPress={() => inputRef?.current?.focus()}>
-                <Text style={styles.macro}> {value}</Text>
-                <TextInput
-                    ref={inputRef}
-                    style={styles.input}
-                    keyboardType={'numeric'}
-                    returnKeyType='done'
-                    onChangeText={(event) => setItem(prevState => ({ ...prevState, [{ value }]: parseInt(event) }))}
-                    value={item[{ value }]}
-                    placeholder='0'
-                />
-                <Icon name='edit' size={18} color="#65C18C" style={{ margin: 10, position: 'absolute', right: 0, bottom: 0, }} />
-            </Pressable>
-        )
-    }
-
-    const pickImage = async () => {
-        // No permissions request is necessary for launching the image library
-        let result = await ImagePicker.launchImageLibraryAsync({
-            allowsEditing: true,
-            aspect: [3, 3],
-            quality: 1,
-        });
-
-        console.log(result);
-
-        if (!result.canceled) {
-            setItem(prevState => ({ ...prevState, image: result.uri }))
-
+    useEffect(()=>{
+        if (item.id !== ''){
+            dispatch(addItem(item))
+            setShowModal(false)
         }
-    };
+    },[item.id])
+    // const pickImage = async () => {
+    //     // No permissions request is necessary for launching the image library
+    //     let result = await ImagePicker.launchImageLibraryAsync({
+    //         allowsEditing: true,
+    //         aspect: [3, 3],
+    //         quality: 1,
+    //     });
+
+    //     console.log(result);
+
+    //     if (!result.cancelled) {
+    //         setItem(prevState => ({ ...prevState, image: result.uri }))
+
+    //     }
+    // };
 
     const takePicture = async () => {
         let result = await ImagePicker.launchCameraAsync({
@@ -68,8 +58,9 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
             aspect: [3, 3],
             quality: 0.5,
         })
-        if (!result.canceled){
-            setItem(prevState => ({ ...prevState, image: result.uri }))
+        if (!result.cancelled) {
+            const {uri} = result as ImagePicker.ImageInfo
+            setItem(prevState => ({ ...prevState, image: uri }))
         }
     }
 
@@ -80,7 +71,7 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
                 transparent={true}
                 visible={showModal}
                 onRequestClose={() => {
-                    Alert.alert('Modal has been closed.');
+                    alert('Modal has been closed.');
                     setShowModal(!showModal);
                 }}
             >
@@ -110,7 +101,6 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
 
 
                             <View style={styles.macroColumn}>
-                                {/* <Test value={'calories'} inputRef={calorieInput} /> */}
                                 <Pressable style={styles.container} onPress={() => calorieInput?.current?.focus()}>
                                     <Text style={styles.macro}> Calories</Text>
                                     <TextInput
@@ -119,7 +109,7 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
                                         keyboardType={'numeric'}
                                         returnKeyType='done'
                                         onChangeText={(event) => setItem(prevState => ({ ...prevState, calories: parseInt(event) }))}
-                                        value={item.calories}
+                                        value={`${item.calories}`}
                                         placeholder='0'
                                     />
                                     <Icon name='edit' size={18} color="#65C18C" style={{ margin: 10, position: 'absolute', right: 0, bottom: 0, }} />
@@ -134,7 +124,7 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
                                         keyboardType={'numeric'}
                                         returnKeyType='done'
                                         onChangeText={(event) => setItem(prevState => ({ ...prevState, proteins: parseInt(event) }))}
-                                        value={item.proteins}
+                                        value={`${item.proteins}`}
                                         placeholder='0'
                                     />
                                     <Icon name='edit' size={18} color="#65C18C" style={{ margin: 10, position: 'absolute', right: 0, bottom: 0, }} />
@@ -151,7 +141,7 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
                                         keyboardType={'numeric'}
                                         returnKeyType='done'
                                         onChangeText={(event) => setItem(prevState => ({ ...prevState, carbohydrates: parseInt(event) }))}
-                                        value={item.carbohydrates}
+                                        value={`${item.carbohydrates}`}
                                         placeholder='0'
                                     />
                                     <Icon name='edit' size={18} color="#65C18C" style={{ margin: 10, position: 'absolute', right: 0, bottom: 0, }} />
@@ -164,7 +154,7 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
                                         keyboardType={'numeric'}
                                         returnKeyType='done'
                                         onChangeText={(event) => setItem(prevState => ({ ...prevState, fats: parseInt(event) }))}
-                                        value={item.fats}
+                                        value={`${item.fats}`}
                                         placeholder='0'
                                     />
                                     <Icon name='edit' size={18} color="#65C18C" style={{ margin: 10, position: 'absolute', right: 0, bottom: 0, }} />
@@ -187,16 +177,10 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
                                 <Text>Cancel</Text>
                             </Pressable>
                             <Pressable
-                                onPress={() => item.name.trim() ?
-
-                                    (
-                                        setItem(prevState => ({ ...prevState, id: item.name + today.getTime()})),
-                                        dispatch(addItem(item)),
-                                        setShowModal(false)
-                                    )
+                                onPress={() => item.name.trim() ?                               
+                                    setItem(prevState => ({ ...prevState, id: item.name + today.getTime() }))  
                                     :
                                     alert('Please enter name')
-
                                 }
                                 style={styles.button}
                             >

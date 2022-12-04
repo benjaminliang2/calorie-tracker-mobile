@@ -14,10 +14,10 @@ export interface Item {
     fats: number, 
 }
 
-interface Custom_date {
+export interface Custom_date {
     id: string,
-    title: string,
-    day: string
+    title?: number,
+    day?: string
 }
 
 interface NutritionState {
@@ -33,7 +33,7 @@ interface NutritionState {
 const initialState: NutritionState = {
     date: {
         id:`${today.toLocaleDateString()}`,
-        title:  `${today.getDate()}`,
+        title:  today.getDate(),
         day:  `${today.toLocaleDateString(undefined, {weekday: 'long', month: 'long', day: 'numeric'})}`,
     },
     calories: 0,
@@ -100,6 +100,7 @@ const nutritionSlice = createSlice({
             state.proteins += payload.proteins
             state.fats += payload.fats
             state.carbohydrates += payload.carbohydrates
+            console.log(state.items)
         },
         removeItem: (state, {payload}) => {
             state.items = state.items.filter(function(item){
@@ -109,6 +110,7 @@ const nutritionSlice = createSlice({
             state.proteins -= payload.proteins
             state.fats -= payload.fats
             state.carbohydrates -= payload.carbohydrates
+            console.log(state.items)
         },
         setDate: (state, {payload}) =>{
             state.date = payload

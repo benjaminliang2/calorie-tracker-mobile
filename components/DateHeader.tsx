@@ -1,10 +1,18 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { setDate } from "../redux/features/NutritionSlice"
+import { RootState, AppDispatch } from "../redux/store"
+import { setDate, Custom_date } from "../redux/features/NutritionSlice"
+import { useAppSelector, useAppDispatch } from "../redux/hooks";
 
-import Icon from 'react-native-vector-icons/FontAwesome5'
 
-let data = []
+interface ItemProps {
+    item: Custom_date, 
+    onPress: () => void, //TODO: figure out expected type
+    backgroundColor: any,
+    textColor: any
+}
+
+let data: Custom_date[] = []
 let today = new Date()
 let prevDays = 365
 for (let i = 0; i <= prevDays; i++) {
@@ -16,17 +24,15 @@ for (let i = 0; i <= prevDays; i++) {
         day: d.toLocaleDateString(undefined, {weekday: 'long', month: 'long', day: 'numeric'}),
     })
 }
-const Item = ({ item, onPress, backgroundColor, textColor }) => (
+const Item = ({ item, onPress, backgroundColor, textColor }: ItemProps) => (
     <TouchableOpacity onPress={onPress} style={[styles.item, backgroundColor]}>
         <Text style={[styles.dateTitle, textColor]}>{item.title}</Text>
     </TouchableOpacity>
 );
 
 export const DateHeader = () => {
-    const { date } = useSelector((store) =>
-        store.nutrition
-    )
-    const dispatch = useDispatch()
+    const { date } = useSelector((store: RootState) => store.nutrition)
+    const dispatch= useAppDispatch()
     // const width = Dimensions.get('window').width
     const renderItem = ({ item }) => {
         const backgroundColor = item.id === date.id ? "#033F40" : "#BDF0CC";
@@ -54,10 +60,7 @@ export const DateHeader = () => {
             style={styles.scroll}
             showsHorizontalScrollIndicator={false}
             decelerationRate={0}
-            // snapToInterval={width}
             snapToAlignment={'center'}
-
-
         />
     </>)
 }
