@@ -100,7 +100,6 @@ const nutritionSlice = createSlice({
             state.proteins += payload.proteins
             state.fats += payload.fats
             state.carbohydrates += payload.carbohydrates
-            console.log(state.items)
         },
         removeItem: (state, {payload}) => {
             state.items = state.items.filter(function(item){
@@ -110,11 +109,9 @@ const nutritionSlice = createSlice({
             state.proteins -= payload.proteins
             state.fats -= payload.fats
             state.carbohydrates -= payload.carbohydrates
-            console.log(state.items)
         },
         setDate: (state, {payload}) =>{
             state.date = payload
-            console.log(state)
         },
     },
     extraReducers: (builder) => {

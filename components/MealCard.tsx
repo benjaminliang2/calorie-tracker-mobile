@@ -44,7 +44,7 @@ export const MealCard = (props:Props) => {
                     </View>
                 </View>
 
-                <Menu name="more">
+                <Menu>
                     <MenuTrigger>
                         <Icon name='dots-horizontal' size={34} color="#65C18C" />
                     </MenuTrigger>
