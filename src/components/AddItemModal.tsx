@@ -2,11 +2,11 @@ import { useRef } from "react"
 import { useState, useEffect } from "react"
 import { Button, ImageBackground, Modal, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native"
 import * as ImagePicker from 'expo-image-picker'
-import { useAppDispatch } from "../redux/hooks"
+import { useAppDispatch } from "../../redux/hooks"
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import CheckBox from 'expo-checkbox'
 
-import { addItem } from "../redux/features/NutritionSlice"
+import { addItem } from "../../redux/features/NutritionSlice"
 
 interface Props {
     showModal: boolean, 

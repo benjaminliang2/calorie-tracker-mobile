@@ -1,12 +1,12 @@
 import { useState } from "react"
-import { useAppDispatch } from "../redux/hooks"
+import { useAppDispatch } from "../../redux/hooks"
 import { Image, StyleSheet, Text, View } from "react-native"
 import { Menu, MenuOption, MenuOptions, MenuTrigger } from "react-native-popup-menu"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { removeItem } from "../redux/features/NutritionSlice"
+import { removeItem } from "../../redux/features/NutritionSlice"
 import { ConfirmModal } from "./ConfirmModal"
 
-import { Item } from "../redux/features/NutritionSlice"
+import { Item } from "../../redux/features/NutritionSlice"
 interface Props {
     item: Item,
     key: string

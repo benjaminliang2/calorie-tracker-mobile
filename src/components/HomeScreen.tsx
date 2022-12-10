@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
-import { fetchNutrition } from "../redux/features/NutritionSlice";
+import { fetchNutrition } from "../../redux/features/NutritionSlice";
 import { DateHeader } from './DateHeader';
 import { DailySummary } from './DailySummary';
 import { MealsSummary } from "./MealsSummary";

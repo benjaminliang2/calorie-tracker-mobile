@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Dimensions, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { RootState, AppDispatch } from "../redux/store"
-import { setDate, Custom_date } from "../redux/features/NutritionSlice"
-import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { RootState, AppDispatch } from "../../redux/store"
+import { setDate, Custom_date } from "../../redux/features/NutritionSlice"
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 
 
 interface ItemProps {

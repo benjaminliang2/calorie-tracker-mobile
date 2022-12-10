@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { RootState } from "../../redux/store";
 import { StyleSheet, Text, View } from "react-native"
 
 import CircularProgress from "react-native-circular-progress-indicator";

@@ -1,6 +1,6 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import { Button, Modal, Pressable, StyleSheet, Text, View } from "react-native";
-import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 
 interface Props {
     title: string,

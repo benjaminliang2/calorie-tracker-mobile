@@ -3,8 +3,9 @@ import store from './redux/store'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 
-import { HomeScreen } from './components/HomeScreen';
+import { HomeScreen } from './src/components/HomeScreen';
 import { MenuProvider } from 'react-native-popup-menu';
+import { Text, View } from 'react-native';
 
 let customFonts = {
   MontserratRegular: require('./assets/fonts/Montserrat-Regular.ttf'),
@@ -17,16 +18,19 @@ let customFonts = {
 
 export default function App() {
 
-  const [isLoaded] = useFonts(customFonts);
-  if (!isLoaded) {
-    return null
-  }
+  // const [isLoaded] = useFonts(customFonts);
+  // if (!isLoaded) {
+  //   return null
+  // }
 
   return (
-    <Provider store={store}>
-      <MenuProvider>
-        <HomeScreen />
-      </MenuProvider>
-    </Provider>
+    // <Provider store={store}>
+    //   <MenuProvider>
+    //     <HomeScreen />
+    //   </MenuProvider>
+    // </Provider>
+    <View>
+      <Text>Hello world</Text>
+    </View>
   );
 }

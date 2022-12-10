@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "marginVertical": 5,
+      "padding": 7,
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#A4BE7B",
+        "fontFamily": "MontserratSemiBold",
+        "fontSize": 15,
+      }
+    }
+  >
+     
+    testing
+     
+  </Text>
+  <View
+    animated={true}
+    animationConfig={
+      Object {
+        "bounciness": 0,
+      }
+    }
+    animationType="spring"
+    indeterminate={false}
+    indeterminateAnimationDuration={1000}
+    onLayout={[Function]}
+    progress={0.1}
+    style={
+      Array [
+        Object {
+          "backgroundColor": undefined,
+          "borderColor": "#5F8D4E",
+          "borderRadius": 4,
+          "borderWidth": 1,
+          "overflow": "hidden",
+          "width": 75,
+        },
+        undefined,
+      ]
+    }
+    useNativeDriver={false}
+  >
+    <View
+      collapsable={false}
+      style={
+        Object {
+          "backgroundColor": "#5F8D4E",
+          "height": 2,
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+            Object {
+              "translateX": -32.85,
+            },
+            Object {
+              "scaleX": 0.10009000000000001,
+            },
+          ],
+        }
+      }
+    />
+  </View>
+  <Text
+    style={
+      Object {
+        "color": "#285430",
+        "fontFamily": "MontserratBold",
+        "fontSize": 15,
+      }
+    }
+  >
+     
+    10
+     / 
+    100
+     
+    g
+     
+  </Text>
+</View>
+`;
