@@ -5,8 +5,11 @@ import * as ImagePicker from 'expo-image-picker'
 import { useAppDispatch } from "../../redux/hooks"
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import CheckBox from 'expo-checkbox'
+import { DataStore } from "aws-amplify"
+import { Food } from "../models"
 
 import { addItem } from "../../redux/features/NutritionSlice"
+
 
 interface Props {
     showModal: boolean, 
@@ -34,6 +37,7 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
         if (item.id !== ''){
             dispatch(addItem(item))
             setShowModal(false)
+            addFood()
         }
     },[item.id])
     // const pickImage = async () => {
@@ -62,6 +66,18 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
             const {uri} = result as ImagePicker.ImageInfo
             setItem(prevState => ({ ...prevState, image: uri }))
         }
+    }
+
+    async function addFood() {
+        await DataStore.save(new Food({ 
+            image: item.image, 
+            name: item.name, 
+            calories: item.calories,
+            proteins: item.proteins,
+            carbohydrates: item.carbohydrates,
+            fats: item.fats
+        }));
+        setShowModal(false);
     }
 
     return (<>
