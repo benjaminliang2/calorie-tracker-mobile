@@ -124,7 +124,7 @@ const nutritionSlice = createSlice({
             state.items = payload.items 
         })
         builder.addCase(fetchNutrition.rejected, (state, { payload }) => {
-            console.log('no data found')
+            // console.log('no data found')
             state.calories = 0
             state.proteins = 0
             state.carbohydrates = 0

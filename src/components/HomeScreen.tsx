@@ -10,7 +10,7 @@ import { MealsSummary } from "./MealsSummary";
 import { AddItemModal } from "./AddItemModal";
 
 
-export const HomeScreen = () => {
+export const HomeScreen = ({signOut}) => {
     const dispatch = useAppDispatch()
     useEffect(()=>{
         // AsyncStorage.clear()
@@ -25,15 +25,25 @@ export const HomeScreen = () => {
                 <DateHeader />
                 <DailySummary />
                 <MealsSummary />
-                <TouchableOpacity style={styles.button} onPress={() => {setShowModal(true)}}>
-                    <Text>Add</Text>
-                </TouchableOpacity>
+                <NavBar setShowModal={setShowModal} signOut={signOut}/>
             </View>
             {showModal && <AddItemModal showModal={showModal} setShowModal={setShowModal}/>}
         </SafeAreaView>
     </>)
 }
 
+const NavBar = ({setShowModal, signOut}) => {
+    return (
+        <>
+        <TouchableOpacity style={styles.button} onPress={() => {setShowModal(true)}}>
+            <Text> Add Item</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => signOut()}>
+            <Text> Add Item</Text>
+        </TouchableOpacity>
+        </>
+        )
+}
 
 
 const styles = StyleSheet.create({
