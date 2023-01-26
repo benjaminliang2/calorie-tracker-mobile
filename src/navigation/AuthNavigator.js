@@ -5,14 +5,14 @@ import SignUpScreen from '../components/SignUpScreen';
 
 const AuthStack = createStackNavigator();
 
-export default function AuthNavigator({ signIn }) {
+export default function AuthNavigator({ signIn, loadApp }) {
     return (
         <AuthStack.Navigator>
             <AuthStack.Screen name="SignIn">
                 {({ navigation }) => <SignInScreen signIn={signIn} navigation={navigation} />}
             </AuthStack.Screen>
             <AuthStack.Screen name="SignUp">
-                {({ navigation }) => <SignUpScreen signIn ={signIn} navigation={navigation} />}
+                {({ navigation }) => <SignUpScreen signIn ={signIn} loadApp={loadApp} navigation={navigation} />}
             </AuthStack.Screen>
 
         </AuthStack.Navigator>

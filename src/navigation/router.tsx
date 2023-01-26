@@ -31,23 +31,6 @@ export default () => {
     setLoading(false)
   }
 
-  const signUp = async () => {
-    Auth.signUp({
-      username: 'test@test.com',
-      password: 'password',
-      attributes: {
-        email: 'test@test.com' , // optional
-        name: 'testname',
-      },
-      validationData: [], // optional
-    })
-    .then((data)=>{
-      console.log(data)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
-  };
   const signIn = (user) => {
     setUserToken(user.signInUserSession.accessToken.jwtToken)
   }
@@ -68,7 +51,7 @@ export default () => {
       </View>
     );
   } else if (!userToken) {
-    view = <AuthNavigator signIn={signIn}  />;
+    view = <AuthNavigator signIn={signIn} loadApp={loadApp}/>;
   } else {
     view = <AppNavigator signOut={signOut} />;
   }

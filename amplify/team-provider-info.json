@@ -13,24 +13,21 @@
       "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-nutritrackapp-dev-134459-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
-      "function": {
-        "nutritionLambda": {
-          "deploymentBucketName": "amplify-nutritrackapp-dev-134459-deployment",
-          "s3Key": "amplify-builds/nutritionLambda-6541465a79376335384b-build.zip"
-        },
-        "nutritionTableTriggereeab2a5c": {
-          "deploymentBucketName": "amplify-nutritrackapp-dev-134459-deployment",
-          "s3Key": "amplify-builds/nutritionTableTriggereeab2a5c-55456344486150527872-build.zip"
-        }
-      },
       "auth": {
         "nutritrackapp": {}
       },
       "storage": {
         "nutritionTable": {}
       },
-      "api": {
-        "nutritionAPI": {}
+      "function": {
+        "nutritionTableTriggereeab2a5c": {
+          "deploymentBucketName": "amplify-nutritrackapp-dev-134459-deployment",
+          "s3Key": "amplify-builds/nutritionTableTriggereeab2a5c-55456344486150527872-build.zip"
+        },
+        "nutritionLambda": {
+          "deploymentBucketName": "amplify-nutritrackapp-dev-134459-deployment",
+          "s3Key": "amplify-builds/nutritionLambda-6541465a79376335384b-build.zip"
+        }
       }
     }
   }

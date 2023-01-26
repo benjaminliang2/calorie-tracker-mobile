@@ -2,21 +2,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  View, StyleSheet, Alert, Text,
+  View, StyleSheet, Alert, Text, TouchableOpacity,
 } from 'react-native';
-import {Auth} from 'aws-amplify';
-import Button from './Button';
-import Input from './Input';
+import { Auth } from 'aws-amplify';
+import CustomButton from './Button';
+import CustomInput from './Input';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    paddingTop: 100,
-  },
-});
 
 export default function SignIn({ navigation, signIn: signInCb }) {
   const [email, onChangeEmail] = useState('');
@@ -54,7 +45,8 @@ export default function SignIn({ navigation, signIn: signInCb }) {
 
   return (
     <View style={styles.container}>
-      <Input
+      <Text style={styles.title}>Welcome back!</Text>
+      <CustomInput
         value={email}
         placeholder="email@example.com"
         onChange={(text) => onChangeEmail(text)}
@@ -62,28 +54,28 @@ export default function SignIn({ navigation, signIn: signInCb }) {
         autoCapitalize="none"
         autoFocus
         keyboardType="email-address"
+        icon = 'envelope'
       />
-      <Input
+      <CustomInput
         value={password}
-        placeholder="password"
+        placeholder="PASSWORD"
         onChange={(text) => onChangePassword(text)}
         secureTextEntry
         autoCompleteType="password"
+        icon = 'lock'
       />
-      <Button
-      onPress={()=> navigation.navigate('SignUp')}
-      >
-        Create an account
-      </Button>
-      <Button
+      <CustomButton
         onPress={() => signIn()}
       >
-        Sign In
-      </Button>
-      <Text>{errorMessage}</Text>
-      {/* <Button onPress={() => navigation.navigate('ForgetPassword')}>
-        Forget Password
-      </Button> */}
+        LOGIN
+      </CustomButton>
+      <View style={styles.pressableContainer}>
+        <Text>Don't have an account?</Text>
+
+        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+          <Text style={styles.buttonLink}>Create an account</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -91,3 +83,35 @@ export default function SignIn({ navigation, signIn: signInCb }) {
 SignIn.propTypes = {
   signIn: PropTypes.func.isRequired,
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingTop: 100,
+    paddingHorizontal: 30,
+  },
+  title: {
+    // width: '100%',
+    textAlign: 'center',
+    foneWeight: 'bold',
+    fontSize: 20
+  },
+  pressableContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    marginVertical: 10,
+
+  },
+  buttonLink: {
+    fontSize: 14,
+    textDecorationLine: 'underline',
+    color: '#285430',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+});

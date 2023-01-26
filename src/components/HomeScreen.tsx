@@ -39,7 +39,7 @@ const NavBar = ({setShowModal, signOut}) => {
             <Text> Add Item</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => signOut()}>
-            <Text> Add Item</Text>
+            <Text> Sign Out</Text>
         </TouchableOpacity>
         </>
         )

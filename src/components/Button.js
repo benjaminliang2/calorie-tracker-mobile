@@ -3,16 +3,20 @@ import { Text, StyleSheet, TouchableHighlight } from 'react-native';
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    padding: 10,
-    backgroundColor: '#2a6bcc',
+    paddingVertical: 15,
+    backgroundColor: '#285430',
     borderColor: 'white',
-    borderRadius: 10,
+    borderRadius: 23,
     borderWidth: 1,
+    paddingHorizontal: 30,
+    width: '100%',
 
   },
   textStyle: {
     fontSize: 18,
+    fontFamily: 'MontserratMedium',
     color: 'white',
+    textAlign: 'center'
   },
 });
 
