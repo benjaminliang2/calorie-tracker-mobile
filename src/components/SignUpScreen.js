@@ -17,8 +17,8 @@ export default function SignUpScreen({ navigation, signIn: signInCb, loadApp }) 
   const [repeatPassword, onChangeRepeatPassword] = useState('password');
   const [invalidMessage, setInvalidMessage] = useState(null);
 
-  const listener = (data) => {
-    switch (data.payload.event) {
+  const listener = (result) => {
+    switch (result.payload.event) {
       case 'configured':
         console.log('the Auth module is configured');
         break;
@@ -42,7 +42,7 @@ export default function SignUpScreen({ navigation, signIn: signInCb, loadApp }) 
         break;
       case 'autoSignIn':
         console.log('auto sign in successful');
-        signInCb(data.payload.data) // returns <CognitoUser>
+        signInCb(result.payload.data) // returns <CognitoUser>
         break;
       case 'autoSignIn_failure':
         console.log('auto sign in failed');

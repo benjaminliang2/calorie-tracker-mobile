@@ -1,5 +1,5 @@
 import { useFonts } from "expo-font";
-import { Amplify } from "aws-amplify";
+import { Amplify, API, Auth } from "aws-amplify";
 import awsconfig from "./src/aws-exports";
 
 import AppNavigation from "./src/navigation/router"

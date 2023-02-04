@@ -28,6 +28,9 @@
           "deploymentBucketName": "amplify-nutritrackapp-dev-134459-deployment",
           "s3Key": "amplify-builds/nutritionLambda-6541465a79376335384b-build.zip"
         }
+      },
+      "api": {
+        "nutritionAPI": {}
       }
     }
   }
