@@ -29,7 +29,8 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
   let today = new Date();
   const dispatch = useAppDispatch();
   const [item, setItem] = useState({
-    image: "https://reactnative.dev/img/tiny_logo.png",
+    // image: "https://reactnative.dev/img/tiny_logo.png",
+    image: null,
     name: "",
     id: "",
     calories: 0,
@@ -46,7 +47,7 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
     if (item.id !== "") {
       dispatch(addItem(item));
       setShowModal(false);
-      createItemDB()
+      createItemDB();
     }
   }, [item.id]);
 
@@ -65,8 +66,8 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
   const createItemDB = async () => {
     API.post("nutritionAPI", "/items", {
       body: {
-        userID: "today is feb3",
-        dateID: "february",
+        userID: `${(await Auth.currentUserCredentials()).identityId}`,
+        dateID: "1",
       },
       headers: {
         Authorization: `Bearer ${(await Auth.currentSession())
@@ -100,12 +101,16 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
                 <ImageBackground
                   style={styles.image}
                   resizeMode="cover"
-                  source={{ uri: item.image }}
+                  source={
+                    item.image
+                      ? { uri: item.image }
+                      : require("../../public/meal_placeholder.png")
+                  }
                 >
                   <Icon
                     name="camera"
                     size={25}
-                    color="#65C18C"
+                    color="#fff"
                     style={{
                       margin: 10,
                       position: "absolute",
@@ -115,18 +120,34 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
                   />
                 </ImageBackground>
               </Pressable>
+              <View style={{margin: 10}}>
+                <Text
+                  style={{
+                    fontFamily: "MontserratBold",
+                    fontSize: 18,
+                    marginTop: 10,
+                    marginBottom: 20,
+                    color: '#666e6e'
+                  }}
+                >
+                  Enter Item
+                </Text>
 
-              <Text>Enter Item</Text>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={(event) =>
+                    setItem((prevState) => ({ ...prevState, name: event }))
+                  }
+                  value={item.name}
+                />
+              </View>
 
-              <TextInput
-                style={styles.input}
-                onChangeText={(event) =>
-                  setItem((prevState) => ({ ...prevState, name: event }))
-                }
-                value={item.name}
-              />
-
-              <View style={{ flexDirection: "row" }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
                 <View style={styles.macroColumn}>
                   <Pressable
                     style={styles.container}
@@ -271,29 +292,29 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
                   onValueChange={() => console.log("checkbox")}
                   color={"#4630EB"}
                 />
-                <Text>Add to Favorites</Text>
+                <Text >Add to Favorites</Text>
               </View>
-              <View style={{ flexDirection: "row" }}>
-                <Pressable
-                  style={styles.button}
-                  onPress={() => setShowModal(false)}
-                >
-                  <Text>Cancel</Text>
-                </Pressable>
-                <Pressable
-                  onPress={() =>
-                    item.name.trim()
-                      ? setItem((prevState) => ({
-                          ...prevState,
-                          id: item.name + today.getTime(),
-                        }))
-                      : alert("Please enter name")
-                  }
-                  style={styles.button}
-                >
-                  <Text>Add</Text>
-                </Pressable>
-              </View>
+            </View>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Pressable
+                style={styles.cancel_button}
+                onPress={() => setShowModal(false)}
+              >
+                <Text style={{fontFamily: "MontserratBold", color:'#B2B2B2', fontSize: 18}}>Cancel</Text>
+              </Pressable>
+              <Pressable
+                onPress={() =>
+                  item.name.trim()
+                    ? setItem((prevState) => ({
+                        ...prevState,
+                        id: item.name + today.getTime(),
+                      }))
+                    : alert("Please enter item")
+                }
+                style={styles.add_button}
+              >
+                <Text style={{fontFamily: "MontserratBold", color:'#fff', fontSize: 18}}>Add</Text>
+              </Pressable>
             </View>
           </View>
         </Modal>
@@ -308,14 +329,12 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
     // paddingTop: 22,
     marginTop: 50,
-    backgroundColor: "#A4BE7B",
+    backgroundColor: "#fff",
   },
   modalView: {
-    // margin: 20,
     borderRadius: 20,
     padding: 35,
-    // alignItems: 'center',
-    shadowColor: "#000",
+    shadowColor: "#698269",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -350,15 +369,28 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#fff",
-    fontSize: 30,
-    // width: "50%",
-    textAlign: "center",
+    fontSize: 24,
+    textAlign: "left",
+    padding: 10,
+    borderRadius: 10,
   },
-  button: {
+  cancel_button: {
     alignItems: "center",
-    backgroundColor: "#fff",
     margin: 10,
     padding: 10,
     flex: 1,
+    borderWidth: 4,
+    borderColor: "#65C18C",
+    borderRadius: 20,
+  },
+  add_button: {
+    alignItems: "center",
+    backgroundColor: "#65C18C",
+    margin: 10,
+    padding: 10,
+    flex: 1,
+    borderWidth: 4,
+    borderColor: "#65C18C",
+    borderRadius: 20,
   },
 });

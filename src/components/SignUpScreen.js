@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import {
-  View, StyleSheet, Text, TouchableOpacity,
+  View, StyleSheet, Text, TouchableOpacity, Image
 } from 'react-native';
 import { Auth, Hub } from 'aws-amplify';
 import CustomButton from './Button';
@@ -41,11 +41,11 @@ export default function SignUpScreen({ navigation, signIn: signInCb, loadApp }) 
         console.log('user did not complete new password flow');
         break;
       case 'autoSignIn':
-        console.log('auto sign in successful');
+        // console.log('auto sign in successful');
         signInCb(result.payload.data) // returns <CognitoUser>
         break;
       case 'autoSignIn_failure':
-        console.log('auto sign in failed');
+        // console.log('auto sign in failed');
         break;
     }
   };
@@ -85,13 +85,16 @@ export default function SignUpScreen({ navigation, signIn: signInCb, loadApp }) 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Create an account!</Text>
+    <Image
+        source={require("../../public/nutritrack_icon.png")}
+        style={{ width: 100, height: 100 }}
+      />
+      <Text style={styles.title}>Register</Text>
 
       <CustomInput
         value={name}
         placeholder="Name"
         onChange={(text) => onChangeName(text)}
-        autoFocus
         icon="user"
       />
       <CustomInput
@@ -144,9 +147,11 @@ const styles = StyleSheet.create({
   },
   title: {
     // width: '100%',
-    textAlign: 'center',
-    foneWeight: 'bold',
-    fontSize: 20
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: 24,
+    width: '100%',
+    paddingVertical: 10,
   },
   pressableContainer: {
     width: '100%',

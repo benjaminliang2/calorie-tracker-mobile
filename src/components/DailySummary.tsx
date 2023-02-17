@@ -12,7 +12,7 @@ export const DailySummary = (): JSX.Element => {
     const { calories, proteins, carbohydrates, fats } = useSelector((store: RootState) =>
         store.nutrition
     )
-    let title: string = "Today's Nutrition"
+    let title: string = "Summary"
     let proteinRequired: number = 150
     let carbsRequired: number = 300
     let fatsRequired: number = 90
@@ -46,7 +46,7 @@ export const DailySummary = (): JSX.Element => {
 const styles = StyleSheet.create({
     title: {
         marginLeft: 10,
-        marginTop: 15,
+        marginTop: 5,
         marginBottom: 8,
         fontFamily: 'MontserratBold',
         fontSize: 28, 

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-  View, StyleSheet, Alert, Text, TouchableOpacity,
+  View, StyleSheet, Alert, Text, TouchableOpacity, Image
 } from 'react-native';
 import { Auth } from 'aws-amplify';
 import CustomButton from './Button';
@@ -45,16 +45,19 @@ export default function SignIn({ navigation, signIn: signInCb }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome back!</Text>
+      <Image
+        source={require("../../public/nutritrack_icon.png")}
+        style={{ width: 100, height: 100 }}
+      />
+      <Text style={styles.title}>Login</Text>
       <CustomInput
         value={email}
         placeholder="email@example.com"
         onChange={(text) => onChangeEmail(text)}
         autoCompleteType="email"
         autoCapitalize="none"
-        autoFocus
         keyboardType="email-address"
-        icon = 'envelope'
+        icon='envelope'
       />
       <CustomInput
         value={password}
@@ -62,7 +65,7 @@ export default function SignIn({ navigation, signIn: signInCb }) {
         onChange={(text) => onChangePassword(text)}
         secureTextEntry
         autoCompleteType="password"
-        icon = 'lock'
+        icon='lock'
       />
       <CustomButton
         onPress={() => signIn()}
@@ -95,9 +98,12 @@ const styles = StyleSheet.create({
   },
   title: {
     // width: '100%',
-    textAlign: 'center',
-    foneWeight: 'bold',
-    fontSize: 20
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: 24,
+    width: '100%',
+    paddingVertical: 10,
+
   },
   pressableContainer: {
     width: '100%',
