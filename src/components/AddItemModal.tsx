@@ -98,15 +98,7 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Pressable onPress={takePicture}>
-                <ImageBackground
-                  style={styles.image}
-                  resizeMode="cover"
-                  source={
-                    item.image
-                      ? { uri: item.image }
-                      : require("../../public/meal_placeholder.png")
-                  }
-                >
+                
                   <Icon
                     name="camera"
                     size={25}
@@ -118,7 +110,6 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
                       bottom: 0,
                     }}
                   />
-                </ImageBackground>
               </Pressable>
               <View style={{margin: 10}}>
                 <Text

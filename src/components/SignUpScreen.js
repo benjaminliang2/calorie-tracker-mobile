@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
 import {
-  View, StyleSheet, Text, TouchableOpacity, Image
+  View, StyleSheet, Text, TouchableOpacity
 } from 'react-native';
 import { Auth, Hub } from 'aws-amplify';
 import CustomButton from './Button';
@@ -41,11 +41,9 @@ export default function SignUpScreen({ navigation, signIn: signInCb, loadApp }) 
         console.log('user did not complete new password flow');
         break;
       case 'autoSignIn':
-        // console.log('auto sign in successful');
         signInCb(result.payload.data) // returns <CognitoUser>
         break;
       case 'autoSignIn_failure':
-        // console.log('auto sign in failed');
         break;
     }
   };
@@ -68,7 +66,6 @@ export default function SignUpScreen({ navigation, signIn: signInCb, loadApp }) 
       })
         .then((data) => {
           console.log(data)
-          // signIn(data.user)
           Hub.listen('auth', listener)
 
         })
@@ -85,10 +82,7 @@ export default function SignUpScreen({ navigation, signIn: signInCb, loadApp }) 
 
   return (
     <View style={styles.container}>
-    <Image
-        source={require("../../public/nutritrack_icon.png")}
-        style={{ width: 100, height: 100 }}
-      />
+
       <Text style={styles.title}>Register</Text>
 
       <CustomInput
