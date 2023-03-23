@@ -16,13 +16,13 @@
     "s3Key": {
       "Type": "String"
     },
-    "storagenutritionTableName": {
+    "storagecaloriedynamoName": {
       "Type": "String",
-      "Default": "storagenutritionTableName"
+      "Default": "storagecaloriedynamoName"
     },
-    "storagenutritionTableArn": {
+    "storagecaloriedynamoArn": {
       "Type": "String",
-      "Default": "storagenutritionTableArn"
+      "Default": "storagecaloriedynamoArn"
     }
   },
   "Conditions": {
@@ -55,12 +55,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "nutritionLambda",
+            "caloriereactlambda",
             {
               "Fn::Join": [
                 "",
                 [
-                  "nutritionLambda",
+                  "caloriereactlambda",
                   "-",
                   {
                     "Ref": "env"
@@ -97,12 +97,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "nutritrackappLambdaRolef20ebf13",
+            "caloriereactnativeLambdaRole7f574446",
             {
               "Fn::Join": [
                 "",
                 [
-                  "nutritrackappLambdaRolef20ebf13",
+                  "caloriereactnativeLambdaRole7f574446",
                   "-",
                   {
                     "Ref": "env"
@@ -182,14 +182,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagenutritionTableArn"
+                  "Ref": "storagecaloriedynamoArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagenutritionTableArn"
+                        "Ref": "storagecaloriedynamoArn"
                       },
                       "index/*"
                     ]

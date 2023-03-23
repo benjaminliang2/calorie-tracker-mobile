@@ -1,36 +1,29 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-nutritrackapp-dev-134459-authRole",
-      "UnauthRoleArn": "arn:aws:iam::647041666427:role/amplify-nutritrackapp-dev-134459-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::647041666427:role/amplify-nutritrackapp-dev-134459-authRole",
+      "AuthRoleName": "amplify-caloriereactnative-dev-194810-authRole",
+      "UnauthRoleArn": "arn:aws:iam::647041666427:role/amplify-caloriereactnative-dev-194810-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::647041666427:role/amplify-caloriereactnative-dev-194810-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-nutritrackapp-dev-134459-deployment",
-      "UnauthRoleName": "amplify-nutritrackapp-dev-134459-unauthRole",
-      "StackName": "amplify-nutritrackapp-dev-134459",
-      "StackId": "arn:aws:cloudformation:us-east-1:647041666427:stack/amplify-nutritrackapp-dev-134459/cf4b2510-8c89-11ed-9b20-120207519467",
-      "AmplifyAppId": "d1vp7ffa8ytbsf",
-      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-nutritrackapp-dev-134459-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+      "DeploymentBucketName": "amplify-caloriereactnative-dev-194810-deployment",
+      "UnauthRoleName": "amplify-caloriereactnative-dev-194810-unauthRole",
+      "StackName": "amplify-caloriereactnative-dev-194810",
+      "StackId": "arn:aws:cloudformation:us-east-1:647041666427:stack/amplify-caloriereactnative-dev-194810/4eccd830-c487-11ed-96b4-0e521b932d27",
+      "AmplifyAppId": "d5ongmpy3dzcs",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-caloriereactnative-dev-194810-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
-        "nutritrackapp": {}
+        "caloriereactnative8022ef6e": {}
       },
       "storage": {
-        "nutritionTable": {}
+        "caloriedynamo": {}
       },
       "function": {
-        "nutritionTableTriggereeab2a5c": {
-          "deploymentBucketName": "amplify-nutritrackapp-dev-134459-deployment",
-          "s3Key": "amplify-builds/nutritionTableTriggereeab2a5c-55456344486150527872-build.zip"
-        },
-        "nutritionLambda": {
-          "deploymentBucketName": "amplify-nutritrackapp-dev-134459-deployment",
-          "s3Key": "amplify-builds/nutritionLambda-6541465a79376335384b-build.zip"
+        "caloriereactlambda": {
+          "deploymentBucketName": "amplify-caloriereactnative-dev-194810-deployment",
+          "s3Key": "amplify-builds/caloriereactlambda-367478506f5158755147-build.zip"
         }
-      },
-      "api": {
-        "nutritionAPI": {}
       }
     }
   }

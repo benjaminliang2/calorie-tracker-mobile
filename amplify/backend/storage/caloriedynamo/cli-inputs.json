@@ -1,0 +1,14 @@
+{
+  "resourceName": "caloriedynamo",
+  "tableName": "meals",
+  "partitionKey": {
+    "fieldName": "userId",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "dateId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

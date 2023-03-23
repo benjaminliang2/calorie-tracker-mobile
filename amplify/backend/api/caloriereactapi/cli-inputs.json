@@ -1,19 +1,16 @@
 {
   "version": 1,
   "paths": {
-    "/items": {
-      "name": "/items",
-      "lambdaFunction": "nutritionLambda",
+    "/day": {
+      "name": "/day",
+      "lambdaFunction": "caloriereactlambda",
       "permissions": {
-        "setting": "protected",
+        "setting": "private",
         "auth": [
           "create",
           "read",
           "update",
           "delete"
-        ],
-        "guest": [
-          "read"
         ]
       }
     }

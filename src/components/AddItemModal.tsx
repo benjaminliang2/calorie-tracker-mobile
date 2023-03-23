@@ -1,14 +1,12 @@
 import { useRef } from "react";
 import { useState, useEffect } from "react";
 import {
-  Button,
   ImageBackground,
   Modal,
   Pressable,
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
@@ -29,7 +27,6 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
   let today = new Date();
   const dispatch = useAppDispatch();
   const [item, setItem] = useState({
-    // image: "https://reactnative.dev/img/tiny_logo.png",
     image: null,
     name: "",
     id: "",
@@ -64,19 +61,14 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
   };
 
   const createItemDB = async () => {
-    API.post("nutritionAPI", "/items", {
+    API.post("caloriereactapi", "/day", {
       body: {
-        userID: `${(await Auth.currentUserCredentials()).identityId}`,
-        dateID: "1",
-      },
-      headers: {
-        Authorization: `Bearer ${(await Auth.currentSession())
-          .getIdToken()
-          .getJwtToken()}`,
+        userId: `${(await Auth.currentUserCredentials()).identityId}`,
+        dateId: item.name,
       },
     })
       .then((result) => {
-        // console.log(result)
+        console.log(result)
       })
       .catch((err) => {
         console.log(err);
@@ -326,8 +318,6 @@ export const AddItemModal = ({ showModal, setShowModal }) => {
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    // justifyContent: 'center',
-    // paddingTop: 22,
     marginTop: 50,
     backgroundColor: "#fff",
   },

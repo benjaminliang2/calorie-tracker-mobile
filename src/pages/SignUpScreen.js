@@ -5,8 +5,8 @@ import {
   View, StyleSheet, Text, TouchableOpacity, Image
 } from 'react-native';
 import { Auth, Hub } from 'aws-amplify';
-import CustomButton from './Button';
-import CustomInput from './Input';
+import CustomButton from '../components/Button';
+import CustomInput from '../components/Input';
 
 
 
@@ -15,7 +15,6 @@ export default function SignUpScreen({ navigation, signIn: signInCb, loadApp }) 
   const [email, onChangeEmail] = useState('test@gmail.com');
   const [password, onChangePassword] = useState('password');
   const [repeatPassword, onChangeRepeatPassword] = useState('password');
-  const [invalidMessage, setInvalidMessage] = useState(null);
 
   const listener = (result) => {
     switch (result.payload.event) {
@@ -41,19 +40,15 @@ export default function SignUpScreen({ navigation, signIn: signInCb, loadApp }) 
         console.log('user did not complete new password flow');
         break;
       case 'autoSignIn':
-        // console.log('auto sign in successful');
         signInCb(result.payload.data) // returns <CognitoUser>
         break;
       case 'autoSignIn_failure':
-        // console.log('auto sign in failed');
         break;
     }
   };
 
   const signUp = async () => {
-    const validPassword = password.length > 5 && (password === repeatPassword);
-    if (validPassword) {
-      setInvalidMessage(null);
+    if (password === repeatPassword) {
       await Auth.signUp({
         username: email,
         password,
@@ -68,18 +63,12 @@ export default function SignUpScreen({ navigation, signIn: signInCb, loadApp }) 
       })
         .then((data) => {
           console.log(data)
-          // signIn(data.user)
           Hub.listen('auth', listener)
 
         })
         .catch((err) => {
-          if (err.message) {
-            setInvalidMessage(err.message);
-          }
           console.log(err);
         });
-    } else {
-      setInvalidMessage('Password must be equal and have greater length than 6.');
     }
   };
 

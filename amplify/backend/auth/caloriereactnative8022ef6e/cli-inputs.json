@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "nutritrackapp_identitypool_7f8219d0",
-    "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "nutrit7f8219d0",
-    "userPoolName": "nutritrackapp_userpool_7f8219d0",
+    "identityPoolName": "caloriereactnative8022ef6e_identitypool_8022ef6e",
+    "allowUnauthenticatedIdentities": false,
+    "resourceNameTruncated": "calori8022ef6e",
+    "userPoolName": "caloriereactnative8022ef6e_userpool_8022ef6e",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,12 +31,18 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "nutrit7f8219d0_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "calori8022ef6e_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
+    "sharedId": "8022ef6e",
+    "resourceName": "caloriereactnative8022ef6e",
     "authSelections": "identityPoolAndUserPool",
-    "resourceName": "nutritrackapp",
-    "sharedId": "7f8219d0",
+    "useDefault": "default",
+    "usernameAttributes": [
+      "email"
+    ],
+    "userPoolGroupList": [],
     "serviceName": "Cognito",
-    "useDefault": "manual"
+    "usernameCaseSensitive": false,
+    "useEnabledMfas": true
   }
 } 

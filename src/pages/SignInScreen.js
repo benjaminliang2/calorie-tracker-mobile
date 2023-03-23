@@ -5,8 +5,8 @@ import {
   View, StyleSheet, Alert, Text, TouchableOpacity, Image
 } from 'react-native';
 import { Auth } from 'aws-amplify';
-import CustomButton from './Button';
-import CustomInput from './Input';
+import CustomButton from '../components/Button';
+import CustomInput from '../components/Input';
 
 
 export default function SignIn({ navigation, signIn: signInCb }) {

@@ -1,20 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
-    "function": {
-        "nutritionTableTriggereeab2a5c": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
-        "nutritionLambda": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        }
-    },
     "storage": {
-        "nutritionTable": {
+        "caloriedynamo": {
             "Name": "string",
             "Arn": "string",
             "StreamArn": "string",
@@ -26,7 +12,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "auth": {
-        "nutritrackapp": {
+        "caloriereactnative8022ef6e": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -36,8 +22,16 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientID": "string"
         }
     },
+    "function": {
+        "caloriereactlambda": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        }
+    },
     "api": {
-        "nutritionAPI": {
+        "caloriereactapi": {
             "RootUrl": "string",
             "ApiName": "string",
             "ApiId": "string"
