@@ -1,5 +1,6 @@
 import { configureStore, createListenerMiddleware, isAnyOf,} from "@reduxjs/toolkit";
 import nutritionReducer, {addItem, fetchNutrition, removeItem, saveNutrition, setDate} from './features/NutritionSlice'
+import userProfileSlice from "./features/UserProfile";
 
 const listenerMiddleWare = createListenerMiddleware()
 listenerMiddleWare.startListening({
@@ -23,6 +24,7 @@ listenerMiddleWare.startListening({
 const store =  configureStore({
     reducer:{
         nutrition: nutritionReducer,
+        userProfile: userProfileSlice
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().prepend(listenerMiddleWare.middleware)

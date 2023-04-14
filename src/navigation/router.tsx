@@ -50,10 +50,10 @@ export default () => {
         <ActivityIndicator size="large" color="#aaa" />
       </View>
     );
-  } else if (!userToken) {
-    view = <AuthNavigator signIn={signIn} loadApp={loadApp}/>;
+  // } else if (!userToken) {
   } else {
-    view = <AppNavigator signOut={signOut} />;
+    view = <AuthNavigator signIn={signIn} loadApp={loadApp}/>;
+    // view = <AppNavigator signOut={signOut} />;
   }
   return(
     <NavigationContainer>

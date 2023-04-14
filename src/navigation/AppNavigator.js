@@ -14,11 +14,11 @@ export default function App({ signOut }) {
                     <Provider store={store}>
                         <MenuProvider>
                             <HomeScreen signOut={signOut} />
-
                         </MenuProvider>
                     </Provider>
                 }
             </AppStack.Screen>
+            
         </AppStack.Navigator>
     );
 }

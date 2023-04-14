@@ -18,7 +18,6 @@ export default function SignIn({ navigation, signIn: signInCb }) {
     if (email.length > 4 && password.length > 2) {
       await Auth.signIn(email, password)
         .then((user) => {
-          // console.log(user)
           signInCb(user);
         })
         .catch((err) => {

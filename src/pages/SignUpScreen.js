@@ -40,7 +40,7 @@ export default function SignUpScreen({ navigation, signIn: signInCb, loadApp }) 
         console.log('user did not complete new password flow');
         break;
       case 'autoSignIn':
-        signInCb(result.payload.data) // returns <CognitoUser>
+        // signInCb(result.payload.data) // returns <CognitoUser>
         break;
       case 'autoSignIn_failure':
         break;
@@ -63,7 +63,9 @@ export default function SignUpScreen({ navigation, signIn: signInCb, loadApp }) 
       })
         .then((data) => {
           console.log(data)
-          Hub.listen('auth', listener)
+          navigation.navigate("GetStarted")
+
+          // Hub.listen('auth', listener)
 
         })
         .catch((err) => {
